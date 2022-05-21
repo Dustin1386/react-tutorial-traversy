@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function Headers(props) {
-    const {text} = props
+function Headers() {
+    const [headerText, setHeader] = useState('this is the default')
+    console.log({headerText})
+    const changeHeader = () => {
+      setHeader('bob')
+  }
   return (
       <header>
-          <div className='container'>
-        <h2>{text}</h2>
-    </div>
+        <button onClick={changeHeader}>Change</button>
+   <h1>{headerText} </h1>
       </header>
     
   )

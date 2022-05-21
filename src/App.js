@@ -4,8 +4,7 @@ import Headers from "./components/Headers"
 function App() {
     return (
         <>
-        <Headers text="Hello World" />
-        <Feedbackitem />
+        <Headers />
         </>
     )
 }
