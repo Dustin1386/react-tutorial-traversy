@@ -5,6 +5,7 @@ function App() {
     return (
         <>
         <Headers />
+        <Feedbackitem />
         </>
     )
 }
