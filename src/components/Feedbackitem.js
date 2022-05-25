@@ -4,8 +4,6 @@ import Card from './shared/Card'
 
 function Feedbackitem({item, handleDelete}) {
 
-  
-
     return (
       <Card>
           <div className='num-display'>{item.rating}</div>
