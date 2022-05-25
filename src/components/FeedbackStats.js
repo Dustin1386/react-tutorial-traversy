@@ -3,7 +3,7 @@ import React from 'react'
 function FeedbackStats({item, feedback}) {
     //sum of ratings 
     //divided by total ratings
-    let ratingSum = feedback.reduce((acc,cur) => {
+    const ratingSum = feedback.reduce((acc,cur) => {
         return acc + cur.rating
     }, 0)
     const ratingAverage =  ratingSum / feedback.length
