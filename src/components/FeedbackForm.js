@@ -15,11 +15,11 @@ function FeedbackForm({handleAdd}) {
 
     const handleTextChange = (e) =>{
 
-        if(text === '' || selected === null){
+        if(text === ''){
             setBtnDisabled(true)
             setMessage(null)
-        } else if(text !== '' && text.trim().length <= 10 || selected === null){
-            setMessage('text should be 10 char and pick a rating, pick a rating')
+        } else if(text.trim().length <= 10 || selected == null){
+            setMessage(selected == null ? 'pick a rating' : 'text should be 10 char')
         } else {
             setMessage(null)
             setBtnDisabled(false)
@@ -38,6 +38,7 @@ function FeedbackForm({handleAdd}) {
             handleAdd(newFeedback)
             setText('')
             setSelected(null)
+            setBtnDisabled(true)
             
     
 
