@@ -18,8 +18,10 @@ function FeedbackForm({handleAdd}) {
         if(text === ''){
             setBtnDisabled(true)
             setMessage(null)
-        } else if(text.trim().length <= 10 || selected == null){
-            setMessage(selected == null ? 'pick a rating' : 'text should be 10 char')
+        } else if(text.trim().length <= 10){
+            setMessage('text should be 10 char')
+        } else if(text.trim().length > 10 && selected == null){
+            setMessage('please select a rating')
         } else {
             setMessage(null)
             setBtnDisabled(false)
