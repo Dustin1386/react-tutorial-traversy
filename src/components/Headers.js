@@ -1,18 +1,30 @@
-import React, { useState } from 'react'
+import PropTypes from "prop-types"
 
-function Headers() {
-    const [headerText, setHeader] = useState('this is the default')
-    console.log({headerText})
-    const changeHeader = () => {
-      setHeader('bob')
+function Headers({ text, bgColor, textColor }) {
+  const headerStyles = {
+    backgroundColor: bgColor,
+    color: textColor,
   }
+
   return (
-      <header>
-        <button onClick={changeHeader}>Change</button>
-   <h1>{headerText} </h1>
-      </header>
-    
+    <header style={headerStyles}>
+      <div className='container'>
+          <h2>{text}</h2>
+      </div>
+    </header>
   )
+}
+
+Headers.defaultProps = {
+  text: "Feedback UI",
+  bgColor: "rgba(0,0,0,0.4)",
+  textColor: "#ff6a95",
+}
+
+Headers.propTypes = {
+  text: PropTypes.string,
+  bgColor: PropTypes.string,
+  textColor: PropTypes.string,
 }
 
 export default Headers
