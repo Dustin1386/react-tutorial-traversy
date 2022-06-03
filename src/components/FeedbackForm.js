@@ -9,8 +9,7 @@ function FeedbackForm({handleAdd}) {
     const [rating, setRating] = useState(null)
     const [btnDisabled, setBtnDisabled] = useState(true)
     const [message, setMessage] = useState('')
-    const [selected, setSelected] = useState(null)
-
+    const [selected, setSelected] = useState(null)  
 
 
     const handleTextChange = (e) =>{
