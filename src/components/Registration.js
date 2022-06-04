@@ -5,9 +5,9 @@ import Button from "./shared/Button";
 import * as yup from "yup"
 
 const schema = yup.object().shape({
-    fname: yup.string().required,
-    lname: yup.string().required,
-    email: yup.string().email().required,
+    fname: yup.string().required(),
+    lname: yup.string().required(),
+    email: yup.string().email().required(),
 
 
 })
@@ -21,17 +21,17 @@ function Registration() {
   return (
     <>
       <form className="card" onSubmit={handleSubmit(d => console.log(d))}>
-        <label for="fname">
-          First name: <input type={"text"} for="fname" />
+        <label htmlFor="fname">
+          First name: <input type="fname" htmlFor="fname" />
         </label>
-        <label for="lname">
-          Last name: <input type={"text"} for="lname" />
+        <label htmlFor="lname">
+          Last name: <input type="lname" />
         </label>
-        <label for="email">
-          Email name: <input type={"email"} for="email" />
+        <label htmlFor="email">
+          Email name: <input type="email" />
         </label>
-        <label for="phone">
-          Phone: <input type={"tel"} for="phone" />
+        <label htmlFor="phone">
+          Phone: <input type="phone" />
         </label>
         <Button type="submit">Send</Button>
       </form>
