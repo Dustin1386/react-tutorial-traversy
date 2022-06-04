@@ -7,6 +7,7 @@ import FeedbackStats from "./components/FeedbackStats";
 import Headers from "./components/Headers";
 import FeedbackData from "./data/FeedBackData";
 import About from "./pages/About";
+import Registration from "./components/Registration";
 
 function App() {
   const [feedback, setFeedback] = useState(FeedbackData);
@@ -40,6 +41,8 @@ function App() {
             }
           ></Route>
           <Route path="/about" element={<About />} />
+          <Route path="/registration" element={<Registration />} />
+
         </Routes>
       </div>
     </Router>
