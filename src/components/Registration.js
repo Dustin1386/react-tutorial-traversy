@@ -8,32 +8,45 @@ const schema = yup.object().shape({
     fname: yup.string().required(),
     lname: yup.string().required(),
     email: yup.string().email().required(),
+    password: yup.string().min(4).max(30).required()
 
 
 })
 
 
 function Registration() {
-    const {handleSubmit} = useForm({
+    const {register, handleSubmit, setError, formState:{errors}, reset} = useForm({
         resolver: yupResolver(schema),
+        defaultValues: {
+          fname: '',
+          lname: '',
+          email: '',
+          password: '',
+        }
     });
+
+    const submitForm = (data) => {
+      reset()
+      console.log(data)
+    }
 
   return (
     <>
-      <form className="card" onSubmit={handleSubmit(d => console.log(d))}>
-        <label htmlFor="fname">
-          First name: <input type="fname" htmlFor="fname" />
-        </label>
-        <label htmlFor="lname">
-          Last name: <input type="lname" />
-        </label>
-        <label htmlFor="email">
-          Email name: <input type="email" />
-        </label>
-        <label htmlFor="phone">
-          Phone: <input type="phone" />
-        </label>
-        <Button type="submit">Send</Button>
+      <form className="card" onSubmit={handleSubmit(submitForm)}>
+        <input type="text" name="fname" placeholder="First Name" {...register('fname', { required: true })}/>
+        {errors?.fname && <p>{errors.fname.message}</p>}        
+        <input type="text" name="lname"  placeholder="Last Name" {...register('lname', { required: true })}/>
+        {errors?.lname && <p>{errors.lname.message}</p>}        
+        <input type="text" name="email" placeholder="Email" {...register('email', { required: true })}/>
+        {errors?.email && <p>{errors.email.message}</p>}        
+        <input type="text" name="password"  placeholder="Password" {...register('password', { required: true })}/>
+        {errors?.password && <p>{errors.password.message}</p>}        
+
+
+
+
+        <Button type="submit">Submit</Button>
+
       </form>
     </>
   );
