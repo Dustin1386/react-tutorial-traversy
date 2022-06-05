@@ -15,8 +15,9 @@ const schema = yup.object().shape({
 
 
 function Registration() {
-    const {register, handleSubmit, setError, formState:{errors}, reset} = useForm({
+    const {register, handleSubmit, formState:{errors, isValid, isDirty}, reset,} = useForm({
         resolver: yupResolver(schema),
+        mode: 'onChange',
         defaultValues: {
           fname: '',
           lname: '',
@@ -28,7 +29,9 @@ function Registration() {
     const submitForm = (data) => {
       reset()
       console.log(data)
+
     }
+    console.log(isValid, 'isDirty')
 
   return (
     <>
@@ -45,7 +48,7 @@ function Registration() {
 
 
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" isDisabled={!isValid || !isDirty}>Submit</Button>
 
       </form>
     </>
