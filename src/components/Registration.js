@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Button from "./shared/Button";
 import * as yup from "yup"
 import { States } from "../Data.js";
-const stateArray = States.map(e => e.abbreviation)
 const schema = yup.object().shape({
     fname: yup.string().required(),
     lname: yup.string().required(),
