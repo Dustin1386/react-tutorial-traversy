@@ -1,4 +1,5 @@
 import {useState, useCallback} from 'react'
+import AboutIconLink from './AboutIconLink'
 import RatingSelect from './RatingSelect'
 import Button from './shared/Button'
 import Card from './shared/Card'
@@ -48,6 +49,7 @@ function FeedbackForm({handleAdd}) {
 
     }
   return (
+      <>
     <Card>
         <form onSubmit={handleSubmit}>
             <h2>hello</h2>
@@ -59,6 +61,10 @@ function FeedbackForm({handleAdd}) {
             {message && <div className='message'>{message}</div>}
         </form>
     </Card>
+    <AboutIconLink />
+
+    </>
+
   )
 }
 

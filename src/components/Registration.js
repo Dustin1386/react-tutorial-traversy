@@ -9,23 +9,24 @@ const schema = yup.object().shape({
     lname: yup.string().required(),
     email: yup.string().email().required(),
     password: yup.string().min(4).max(30).required(),
-    states: yup.string().oneOf(States.map((e) => e.abbreviation)).required()
-
+    states: yup.string().oneOf(States.map((e) => e.abbreviation)).required(),
+    zipcode: yup.string().matches(/^[0-9]+$/, "Must be only digits").min(5,'must be five').max(5)
 
 })
 
 
 function Registration() {
-  console.log()
+  let stateArray = States.map(e => e.abbreviation)
     const {register, handleSubmit, formState:{errors, isValid, isDirty}, reset,} = useForm({
         resolver: yupResolver(schema),
         mode: 'onChange',
         defaultValues: {
-          fname: '',
+          fname: '' ,
           lname: '',
           email: '',
           password: '',
-          states:'AL',
+          states:'',
+          zipcode: '',
         }
     });
 
@@ -40,7 +41,9 @@ function Registration() {
     <>
       <form className="card" onSubmit={handleSubmit(submitForm)}>
         <input type="text" name="fname" placeholder="First Name" {...register('fname', { required: true })}/>
-        {errors?.fname && <p>{errors.fname.message}</p>}        
+        {errors?.fname && <p>{errors.fname.message}</p>}
+        <input type="text" name="zipcode" placeholder="Zip Code" {...register('zipcode', { required: true })}/>
+        {errors?.zipcode && <p>{errors.zipcode.message}</p>}        
         <input type="text" name="lname"  placeholder="Last Name" {...register('lname', { required: true })}/>
         {errors?.lname && <p>{errors.lname.message}</p>}        
         <input type="text" name="email" placeholder="Email" {...register('email', { required: true })}/>
