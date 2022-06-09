@@ -1,62 +1,54 @@
-import {useState, useCallback} from 'react'
+import {useState} from 'react'
+import { useForm } from 'react-hook-form'
+import * as yup from "yup"
+import { yupResolver } from '@hookform/resolvers/yup';
 import AboutIconLink from './AboutIconLink'
 import RatingSelect from './RatingSelect'
+import Rating from './RatingSelect'
 import Button from './shared/Button'
 import Card from './shared/Card'
 
 
+const schema = yup.object().shape({
+    textInput: yup.string().required().min(5, 'must be five characters'),
+    ratingSelect: yup.boolean().required().oneOf(['num1','num2','num3','num4'], 'Select number')
+
+
+})
+
 function FeedbackForm({handleAdd}) {
+    const {register, handleSubmit, formState:{errors, isValid, isDirty}, reset} = useForm({
+        resolver: yupResolver(schema),
+        mode: 'onChange',
+    })
+    console.log(isValid)
     const [text, setText] = useState('')
     const [rating, setRating] = useState(null)
-    const [btnDisabled, setBtnDisabled] = useState(true)
     const [message, setMessage] = useState('')
     const [selected, setSelected] = useState(null)  
 
 
     const handleTextChange = (e) =>{
-
-        if(text === ''){
-            setBtnDisabled(true)
-            setMessage(null)
-        } else if(text.trim().length <= 10){
-            setMessage('text should be 10 char')
-        } else if(text.trim().length > 10 && selected == null){
-            setMessage('please select a rating')
-        } else {
-            setMessage(null)
-            setBtnDisabled(false)
-        }
         setText(e.target.value)
     }
-    const handleSubmit = (e) => {
+    const submitForm = (e) => {
         e.preventDefault(e)
-        const rating = selected
-
-        if(text.trim().length > 10) {
-            const newFeedback = {
-                text,
-                rating
-            }
-            handleAdd(newFeedback)
-            setText('')
-            setSelected(null)
-            setBtnDisabled(true)
-            
+        reset()
+        
     
 
 
         }
 
-    }
   return (
       <>
     <Card>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(submitForm)}>
             <h2>hello</h2>
-            <RatingSelect selected={selected} setSelected={setSelected} select={(rating) => setRating(rating)}/>
+            <Rating name="ratingSelect" selected={selected} ref={register} setSelected={setSelected} {...register('textInput', { required: true })} select={(rating) => setRating(rating)}/>
             <div className='input-group'>
-                <input value={text} onChange={handleTextChange} type='text' placeholder='write'/>
-                <Button type='submit' isDisabled={btnDisabled}>Send</Button>
+                <input name="textInput" onChange={handleTextChange}  {...register('textInput', { required: true })} type='text' placeholder='write'/>
+                <Button type='submit' isDisabled={!isValid || !isDirty}>Send</Button>
             </div>
             {message && <div className='message'>{message}</div>}
         </form>
@@ -69,3 +61,6 @@ function FeedbackForm({handleAdd}) {
 }
 
 export default FeedbackForm
+
+
+

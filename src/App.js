@@ -8,6 +8,7 @@ import Headers from "./components/Headers";
 import FeedbackData from "./data/FeedBackData";
 import About from "./pages/About";
 import Registration from "./components/Registration";
+import { FeedbackProvider } from "./context/FeedbackContext";
 import AboutIconLink from "./components/AboutIconLink";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
   };
 
   return (
+    <FeedbackProvider>
     <Router>
       <Headers />
       <div className="container">
@@ -47,6 +49,7 @@ function App() {
 
       </div>
     </Router>
+    </FeedbackProvider>
   );
 }
 
