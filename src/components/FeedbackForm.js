@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from "yup"
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -17,6 +17,7 @@ const schema = yup.object().shape({
 })
 
 function FeedbackForm({handleAdd}) {
+    const inputRef = useRef(null)
     const {register, handleSubmit, formState:{errors, isValid, isDirty}, reset} = useForm({
         resolver: yupResolver(schema),
         mode: 'onChange',
@@ -45,7 +46,7 @@ function FeedbackForm({handleAdd}) {
     <Card>
         <form onSubmit={handleSubmit(submitForm)}>
             <h2>hello</h2>
-            <Rating name="ratingSelect" selected={selected} ref={register} setSelected={setSelected} {...register('textInput', { required: true })} select={(rating) => setRating(rating)}/>
+            <Rating name="ratingSelect" selected={selected} ref={inputRef} setSelected={setSelected} {...register('ratingSelect', { required: true })} select={(rating) => setRating(rating)}/>
             <div className='input-group'>
                 <input name="textInput" onChange={handleTextChange}  {...register('textInput', { required: true })} type='text' placeholder='write'/>
                 <Button type='submit' isDisabled={!isValid || !isDirty}>Send</Button>

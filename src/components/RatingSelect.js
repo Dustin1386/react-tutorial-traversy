@@ -2,6 +2,7 @@ import {useCallback} from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from "yup"
 import { yupResolver } from '@hookform/resolvers/yup';
+import { forwardRef } from 'react';
 
 
 
@@ -11,11 +12,8 @@ const schema = yup.object().shape({
 
 
 })
-function RatingSelect({selected, setSelected}) {
-  const {register} = useForm({
-    resolver: yupResolver(schema),
-    mode: 'onChange',
-})
+const RatingSelect = forwardRef(({setSelected, selected}, ref ) => {
+
   const handleChange = useCallback(event => {
     setSelected(event.target.value)
     setSelected(+event.currentTarget.value)
@@ -33,7 +31,8 @@ function RatingSelect({selected, setSelected}) {
             value='1'
             onChange={handleChange}
             checked={selected === 1}
-            {...register('rating', { required: true })}
+            ref={ref}
+      
           />  
           <label htmlFor='num1'>1</label>
           </li>
@@ -45,7 +44,8 @@ function RatingSelect({selected, setSelected}) {
             value='2'
             onChange={handleChange}
             checked={selected === 2}
-            {...register('rating', { required: true })}
+            ref={ref}
+
 
           />  
           <label htmlFor='num2'>2</label>
@@ -58,7 +58,8 @@ function RatingSelect({selected, setSelected}) {
             value='3'
             onChange={handleChange}
             checked={selected === 3}
-            {...register('rating', { required: true })}
+            ref={ref}
+
 
           />  
           <label htmlFor='num3'>3</label>
@@ -71,7 +72,8 @@ function RatingSelect({selected, setSelected}) {
             value='4'
             onChange={handleChange}
             checked={selected === 4}
-            {...register('rating', { required: true })}
+            ref={ref}
+
 
           />  
           <label htmlFor='num4'>4</label>
@@ -81,6 +83,6 @@ function RatingSelect({selected, setSelected}) {
           
           
           )
-}
+})
 
 export default RatingSelect
