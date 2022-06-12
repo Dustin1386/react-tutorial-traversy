@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import AboutIconLink from './AboutIconLink'
 import Button from './shared/Button'
 import Card from './shared/Card'
+import RatingSelect from './RatingSelect';
 
 
 const schema = yup.object().shape({
@@ -30,6 +31,7 @@ function FeedbackForm({handleAdd}) {
     setSelected(+event.currentTarget.value)
     }
 
+    console.log(isDirty)
 
     const submitForm = (data) => {
         const newFeedback = {
@@ -47,63 +49,7 @@ function FeedbackForm({handleAdd}) {
     <Card>
         <form onSubmit={handleSubmit(submitForm)}>
             <h2>hello</h2>
-            <ul className='rating'>
-        <li>
-        <input
-        {...register('rating', {required:true})}
-            type='radio'
-            id='num1'
-            name='rating'
-            value={1} 
-            onChange={handleChange}
-            checked={selected === 1}
-      
-          />  
-          <label htmlFor='num1'>1</label>
-          </li>
-          <li>
-        <input
-          {...register('rating', {required:true})}
-            type='radio'
-            id='num2'
-            name='rating'
-            value={2}
-            onChange={handleChange}
-            checked={selected === 2}
-
-
-          />  
-          <label htmlFor='num2'>2</label>
-          </li>
-          <li>
-        <input
-        {...register('rating', {required:true})}
-            type='radio'
-            id='num3'
-            name='rating'
-            value={3}
-            onChange={handleChange}
-            checked={selected === 3}
-
-
-          />  
-          <label htmlFor='num3'>3</label>
-          </li>
-          <li>
-        <input
-        {...register('rating', {required:true})}
-            type='radio'
-            id='num4'
-            name='rating'
-            value={4}
-            onChange={handleChange}
-            checked={selected === 4}
-
-
-          />  
-          <label htmlFor='num4'>4</label>
-          </li>
-          </ul>
+            <RatingSelect  selected={selected} register={register}  setSelected={setSelected} select={(rating) => setRating(rating)}/>
             <div className='input-group'>
                 <input name="text" onChange={handleTextChange}  {...register('text', { required: true })} type='text' placeholder='write'/>
                 <Button type='submit' isDisabled={!isValid || !isDirty}>Send</Button>
