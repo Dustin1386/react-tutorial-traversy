@@ -48,7 +48,7 @@ function FeedbackForm({handleAdd}) {
       <>
     <Card>
         <form onSubmit={handleSubmit(submitForm)}>
-            <h2>hello</h2>
+            <h2>Feed Back Rating</h2>
             <RatingSelect  selected={selected} register={register}  setSelected={setSelected} select={(rating) => setRating(rating)}/>
             <div className='input-group'>
                 <input name="text" onChange={handleTextChange}  {...register('text', { required: true })} type='text' placeholder='write'/>
