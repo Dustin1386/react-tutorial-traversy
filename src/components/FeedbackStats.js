@@ -7,7 +7,7 @@ function FeedbackStats({item, feedback}) {
         return acc + cur.rating
     }, 0)
     const ratingAverage =  ratingSum / feedback.length
-    console.log(ratingAverage)
+    console.log(feedback)
   return (
     <div className='feedback-stats'>
         <h4>{feedback.length} Reviews</h4>

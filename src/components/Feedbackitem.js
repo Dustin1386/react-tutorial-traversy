@@ -4,6 +4,7 @@ import Card from './shared/Card'
 import PropTypes from 'prop-types'
 
 function Feedbackitem({item, handleDelete}) {
+  console.log(item)
 
     return (
       <Card>
