@@ -32,10 +32,8 @@ function Registration() {
 
     const submitForm = (data) => {
       reset()
-      console.log(data)
 
     }
-    console.log(isValid)
 
   return (
     <>

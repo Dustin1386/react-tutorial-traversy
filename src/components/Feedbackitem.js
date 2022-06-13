@@ -8,7 +8,6 @@ import FeedbackContext from '../context/FeedbackContext'
 
 function Feedbackitem({item}) {
   const {deleteFeedback } = useContext(FeedbackContext)
-  console.log(item)
 
     return (
       <Card>
