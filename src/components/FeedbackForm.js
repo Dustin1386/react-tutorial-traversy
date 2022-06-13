@@ -6,6 +6,9 @@ import AboutIconLink from './AboutIconLink'
 import Button from './shared/Button'
 import Card from './shared/Card'
 import RatingSelect from './RatingSelect';
+import FeedbackContext from '../context/FeedbackContext'
+
+
 
 
 const schema = yup.object().shape({
@@ -14,11 +17,12 @@ const schema = yup.object().shape({
 
 })
 
-function FeedbackForm({handleAdd}) {
+function FeedbackForm() {
     const {register, handleSubmit, formState:{errors, isDirty, isValid}, reset} = useForm({
         resolver: yupResolver(schema),
         mode: 'onChange',
     })
+    const {addFeedback } = useContext(FeedbackContext)
     const [text, setText] = useState('')
     const [rating, setRating] = useState(0)
     const [message, setMessage] = useState('')
@@ -34,12 +38,8 @@ function FeedbackForm({handleAdd}) {
     console.log(isDirty)
 
     const submitForm = (data) => {
-        const newFeedback = {
-            text,
-            selected
-        }
         console.log(data)
-        handleAdd(data)
+        addFeedback(data)
         reset()
         setSelected(null)        
         

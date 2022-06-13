@@ -1,6 +1,10 @@
 import React from 'react'
+import {useContext} from 'react'
+import FeedbackContext from '../context/FeedbackContext'
 
-function FeedbackStats({item, feedback}) {
+
+function FeedbackStats() {
+  const {feedback} = useContext(FeedbackContext)
     //sum of ratings 
     //divided by total ratings
     const ratingSum = feedback.reduce((acc,cur) => {
