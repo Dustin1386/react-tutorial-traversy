@@ -8,13 +8,9 @@ import Card from './shared/Card'
 import RatingSelect from './RatingSelect';
 import FeedbackContext from '../context/FeedbackContext'
 
-
-
-
 const schema = yup.object().shape({
     text: yup.string().required().min(5, 'must be five characters'),
     rating: yup.number().required()
-
 })
 
 function FeedbackForm() {
