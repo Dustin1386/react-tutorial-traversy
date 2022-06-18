@@ -12,7 +12,6 @@ const schema = yup.object().shape({
     text: yup.string().required().min(5, 'must be five characters'),
     rating: yup.number().required()
 })
-8
 function FeedbackForm() {
     const {register, handleSubmit, formState:{ isDirty, isValid }, reset} = useForm({
         resolver: yupResolver(schema),
