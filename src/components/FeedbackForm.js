@@ -1,4 +1,4 @@
-import {useState, useRef, useContext} from 'react'
+import {useState, useContext} from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from "yup"
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -18,7 +18,7 @@ const schema = yup.object().shape({
 })
 
 function FeedbackForm() {
-    const {register, handleSubmit, formState:{errors, isDirty, isValid}, reset} = useForm({
+    const {register, handleSubmit, formState:{ isDirty, isValid }, reset} = useForm({
         resolver: yupResolver(schema),
         mode: 'onChange',
     })
@@ -29,10 +29,6 @@ function FeedbackForm() {
     const [selected, setSelected] = useState(null) 
     const handleTextChange = ({ target: { value } }) => { // 👈  get the value
       setText(value)
-    }
-    const handleChange = (event) =>{
-    setSelected(event.target.value)
-    setSelected(+event.currentTarget.value)
     }
 
     console.log(isDirty)
