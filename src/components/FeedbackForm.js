@@ -23,9 +23,9 @@ function FeedbackForm() {
         mode: 'onChange',
     })
     const {addFeedback } = useContext(FeedbackContext)
-    const [text, setText] = useState('')
-    const [rating, setRating] = useState(0)
-    const [message, setMessage] = useState('')
+    const [setText] = useState('')
+    const [setRating] = useState(0)
+    const [message] = useState('')
     const [selected, setSelected] = useState(null) 
     const handleTextChange = ({ target: { value } }) => { // 👈  get the value
       setText(value)
