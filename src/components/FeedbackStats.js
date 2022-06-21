@@ -5,11 +5,13 @@ import FeedbackContext from '../context/FeedbackContext'
 
 function FeedbackStats() {
   const {feedback} = useContext(FeedbackContext)
+  console.log(feedback)
     //sum of ratings 
     //divided by total ratings
     const ratingSum = feedback.reduce((acc,cur) => {
         return acc + cur.rating
     }, 0)
+    console.log(ratingSum)
     const ratingAverage =  ratingSum / feedback.length
   return (
     <div className='feedback-stats'>
