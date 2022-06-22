@@ -19,21 +19,6 @@
       "id": 4,
       "rating": 6,
       "text": "this is feedback item 4 from backend"
-    },
-    {
-      "text": "hello this is a test",
-      "rating": 6,
-      "id": 6
-    },
-    {
-      "rating": 1,
-      "text": "will this work",
-      "id": 8
-    },
-    {
-      "rating": 1,
-      "text": "yes this works",
-      "id": 9
     }
   ]
 }

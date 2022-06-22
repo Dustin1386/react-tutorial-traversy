@@ -19,19 +19,12 @@ export const FeedbackProvider = ({children}) =>{
     //   item: {},
     //   edit: false
     // })
-    const deleteFeedback = (id) => {
-        if (window.confirm("you really want to do this homie")) {
+    const deleteFeedback = async (id) => {
+       const response = await fetch(`/feedback/${id}`,{
+        method: 'DELETE'
+       })
           setFeedback(feedback.filter((item) => item.id !== id));
-        }
       };
-      // TODO: V2
-      // const editFeedback = (item) =>{
-      //   console.log(item, 'item')
-      //   setEditItem({
-      //     item,
-      //     edit :true
-      //   })
-      // }
       const addFeedback = async (newFeedback) => {
         const response = await fetch('/feedback', {
           method: 'POST',
