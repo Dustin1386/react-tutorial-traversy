@@ -2,12 +2,19 @@ import React from 'react'
 import { FaTimes } from 'react-icons/fa'
 import Card from './shared/Card'
 import PropTypes from 'prop-types'
-import { useContext} from 'react'
+import { useContext, useCallback} from 'react'
 import FeedbackContext from '../context/FeedbackContext'
+import { useForm } from 'react-hook-form'
 
 
-function Feedbackitem({item}) {
+const Feedbackitem = ({item}) => {
   const {deleteFeedback } = useContext(FeedbackContext)
+  const { setValue } = useForm()
+  const handleEdit = useCallback(
+    (event) => {
+       setValue(event.target.value)
+    }
+  )
 
     return (
       <Card>
