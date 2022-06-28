@@ -44,8 +44,7 @@ function FeedbackForm() {
             <div className='input-group'>
                 <input name="text" onChange={handleTextChange}  {...register('text', { required: true })} type='text' placeholder='write'/>
                 <Button type='submit' isDisabled={!isValid || !isDirty}>Send</Button>\
-                {/* issue1: getting set value to be value from input 
-                issue2: abstracting setValue to be triggered on item not form */}
+
                 <button type='button' onClick={() => setValue('text', 'bill')}>Send</button>
 
             </div>
